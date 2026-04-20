@@ -1,15 +1,12 @@
 export default async function handler(req, res) {
-  // ✅ REQUIRED: CORS headers (this fixes "Failed to fetch")
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-  // ✅ REQUIRED: handle browser preflight request
   if (req.method === "OPTIONS") {
     return res.status(200).end();
   }
 
-  // Only allow POST
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
@@ -17,29 +14,42 @@ export default async function handler(req, res) {
   try {
     const { input } = req.body;
 
-    if (!input) {
-      return res.status(400).json({ error: "Missing input" });
-    }
-
-    // 🔑 Get API key from Vercel environment variables
-    const apiKey = process.env.OPENAI_API_KEY;
-
     const response = await fetch("https://api.openai.com/v1/responses", {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${apiKey}`,
+        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
         model: "gpt-4.1-mini",
         input: `
-You are an expert executive team coach.
+You are an experienced executive team coach.
 
-Analyze the following team assessment responses and provide:
+You are analyzing a 9-question team diagnostic scored 1–5.
 
-1. A short diagnostic summary
-2. Key issues (bullet points)
-3. Suggested focus areas (practical, executive-level)
+Dimensions:
+- Alignment (Q1–Q3)
+- Organization (Q4–Q6)
+- People (Q7–Q9)
+
+First calculate:
+- Alignment score = average of Q1–Q3
+- Organization score = average of Q4–Q6
+- People score = average of Q7–Q9
+
+Then produce a concise report:
+
+1. Scores by Dimension
+2. Overall Assessment (3–4 sentences)
+3. Key Strengths (3–5 bullets)
+4. Key Development Areas (3–5 bullets)
+5. Targeted Recommendations under:
+   - Alignment
+   - Organization
+   - People
+6. Priority Focus (1–2 highest leverage areas)
+
+Be direct, practical, and specific. Avoid generic language.
 
 Assessment data:
 ${input}
@@ -53,10 +63,9 @@ ${input}
       data.output?.[0]?.content?.[0]?.text ||
       "No response generated";
 
-    return res.status(200).json({ result: text });
+    res.status(200).json({ result: text });
 
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({ error: "Server error" });
+    res.status(500).json({ error: error.message });
   }
 }
