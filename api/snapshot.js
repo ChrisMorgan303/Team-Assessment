@@ -1,145 +1,96 @@
-<div id="app" style="max-width:640px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
-  <h3>2-Minute Team Snapshot</h3>
-  <p id="progress" style="color:#666;"></p>
-  <p id="category" style="font-weight:600;margin-top:10px;"></p>
-  <div id="question" style="margin:15px 0;"></div>
-  <div id="options" style="display:flex;gap:10px;"></div>
+export default async function handler(req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-  <div style="margin-top:20px; display:flex; justify-content:space-between;">
-    <button id="backBtn" onclick="goBack()">Back</button>
-  </div>
-</div>
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
 
-<script>
-const questions = [/* unchanged */];
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
+  }
 
-let current = 0;
-let answers = Array(questions.length).fill(null);
+  try {
+    const { input } = req.body;
 
-function render() {
-  const q = questions[current];
+    const response = await fetch("https://api.openai.com/v1/responses", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        model: "gpt-4.1-mini",
+        input: `
+You are a senior executive team coach.
 
-  progress.innerText = `Question ${current + 1} of ${questions.length}`;
-  category.innerText = q.category;
-  question.innerHTML = `<p>${q.text}</p>`;
+You are analyzing a 9-question team diagnostic scored 1–5.
 
-  options.innerHTML = q.labels.map((label, i) => {
-    const selected = answers[current] === i + 1;
-    return `
-      <button onclick="select(${i + 1})"
-        style="
-          flex:1;
-          padding:12px;
-          border-radius:10px;
-          border:1px solid ${selected ? '#000' : '#ccc'};
-          background:${selected ? '#000' : '#f5f5f7'};
-          color:${selected ? '#fff' : '#333'};
-          cursor:pointer;
-        ">
-        ${label}
-      </button>
-    `;
-  }).join("");
+Each item includes:
+- Question number (Q1–Q9)
+- Category (Alignment, Organization, People)
+- Score (1–5)
 
-  backBtn.style.visibility = current === 0 ? "hidden" : "visible";
-}
+Step 1 — Calculate:
+- Alignment = average of Q1–3
+- Organization = average of Q4–6
+- People = average of Q7–9
+- Round to 1 decimal place
 
-function formatAnswers() {
-  return answers.map((score, i) => {
-    const q = questions[i];
-    return `Q${i+1} | ${q.category} | Score: ${score} | ${q.text}`;
-  }).join("\n");
-}
+Step 2 — Produce a concise, structured report EXACTLY in this format:
 
-async function getAIReport() {
-  const res = await fetch("https://team-assessment-delta.vercel.app/api/snapshot?v=" + Date.now(), {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ input: formatAnswers() })
-  });
+Scores by Dimension
+Alignment: X.X
+Organization: X.X
+People: X.X
 
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.error || "Request failed");
+Overall Assessment
+A clear, grounded evaluation of team effectiveness (3–4 sentences).
 
-  return data.result;
-}
+Key Strengths
+- 3–5 specific strengths
 
-function formatReport(text) {
-  return text
-    .replace(/^Scores by Dimension/gm, "<div style='margin-top:20px;font-weight:600;'>Scores by Dimension</div>")
-    .replace(/^Overall Assessment/gm, "<div style='margin-top:20px;font-weight:600;'>Overall Assessment</div>")
-    .replace(/^Key Strengths/gm, "<div style='margin-top:20px;font-weight:600;'>Key Strengths</div>")
-    .replace(/^Key Development Areas/gm, "<div style='margin-top:20px;font-weight:600;'>Key Development Areas</div>")
-    .replace(/^Targeted Recommendations/gm, "<div style='margin-top:20px;font-weight:600;'>Targeted Recommendations</div>")
-    .replace(/^Priority Focus/gm, "<div style='margin-top:25px;font-weight:700;'>Priority Focus</div>")
-    .replace(/^Alignment$/gm, "<div style='margin-top:10px;font-weight:500;'>Alignment</div>")
-    .replace(/^Organization$/gm, "<div style='margin-top:10px;font-weight:500;'>Organization</div>")
-    .replace(/^People$/gm, "<div style='margin-top:10px;font-weight:500;'>People</div>")
-    .replace(/(Alignment: \d\.\d)/g, "<strong>$1</strong>")
-    .replace(/(Organization: \d\.\d)/g, "<strong>$1</strong>")
-    .replace(/(People: \d\.\d)/g, "<strong>$1</strong>")
-    .replace(/^- /gm, "• ")
-    .replace(/\n/g, "<br>");
-}
+Key Development Areas
+- 3–5 specific gaps or risks
 
-function downloadPDF() {
-  const content = document.getElementById("reportContent").innerHTML;
-  const win = window.open('', '', 'width=800,height=700');
+Targeted Recommendations
 
-  win.document.write(`
-    <html>
-    <head>
-      <title>Team Assessment</title>
-      <style>
-        body { font-family: -apple-system, sans-serif; padding:40px; line-height:1.6; }
-      </style>
-    </head>
-    <body>
-      <h1>Team Assessment</h1>
-      ${content}
-    </body>
-    </html>
-  `);
+Alignment
+- practical actions
 
-  win.document.close();
-  win.print();
-}
+Organization
+- practical actions
 
-async function select(value) {
-  answers[current] = value;
+People
+- practical actions
 
-  if (current < questions.length - 1) {
-    current++;
-    render();
-  } else {
-    app.innerHTML = "<p>Analyzing your team…</p>";
+Priority Focus
+- 1–2 highest-leverage priorities
 
-    try {
-      const report = await getAIReport();
+Rules:
+- Plain text only
+- No asterisks or markdown
+- Use hyphens for bullets
+- Be concise, specific, and pragmatic
+- Avoid generic consulting language
+- Do not add extra sections
 
-      app.innerHTML = `
-        <h3>Team Assessment</h3>
+Assessment data:
+${input}
+        `
+      })
+    });
 
-        <div id="reportContent" style="line-height:1.7;">
-          ${formatReport(report)}
-        </div>
+    const data = await response.json();
 
-        <div style="margin-top:25px;">
-          <button onclick="downloadPDF()">Download PDF</button>
-        </div>
-      `;
-    } catch (err) {
-      app.innerHTML = `<h3>Error</h3><pre>${err.message}</pre>`;
-    }
+    const text =
+      data.output?.[0]?.content?.[0]?.text ||
+      "No response generated";
+
+    res.status(200).json({ result: text });
+
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 }
-
-function goBack() {
-  if (current > 0) {
-    current--;
-    render();
-  }
-}
-
-render();
-</script>
