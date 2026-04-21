@@ -1,16 +1,24 @@
 import OpenAI from "openai";
 
-const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).send("Method not allowed");
   }
 
   try {
-    const { input } = req.body;
+    if (!process.env.OPENAI_API_KEY) {
+      return res.status(500).json({ error: "Missing API key" });
+    }
+
+    const { input } = req.body || {};
+
+    if (!input) {
+      return res.status(400).json({ error: "Missing input" });
+    }
+
+    const client = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    });
 
     const completion = await client.chat.completions.create({
       model: "gpt-4o-mini",
@@ -76,12 +84,15 @@ ${input}
       ],
     });
 
-    const report = completion.choices[0].message.content;
-
-    res.status(200).json({ report });
+    return res.status(200).json({
+      report: completion.choices[0].message.content,
+    });
 
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Error generating report" });
+    console.error("FULL ERROR:", error);
+    return res.status(500).json({
+      error: "Function crashed",
+      details: error.message,
+    });
   }
 }
