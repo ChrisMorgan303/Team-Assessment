@@ -1,4 +1,23 @@
-input: `
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).send("Method not allowed");
+  }
+
+  try {
+    const { input } = req.body;
+
+    const completion = await client.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [
+        {
+          role: "user",
+          content: `
 You are an experienced executive team coach.
 
 You are analyzing a 9-question team diagnostic scored 1–5.
@@ -52,4 +71,17 @@ Rules:
 
 Assessment data:
 ${input}
-`
+          `,
+        },
+      ],
+    });
+
+    const report = completion.choices[0].message.content;
+
+    res.status(200).json({ report });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error generating report" });
+  }
+}
