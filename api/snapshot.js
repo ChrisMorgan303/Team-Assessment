@@ -1,28 +1,4 @@
-export default async function handler(req, res) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-
-  if (req.method === "OPTIONS") {
-    return res.status(200).end();
-  }
-
-  if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method not allowed" });
-  }
-
-  try {
-    const { input } = req.body;
-
-    const response = await fetch("https://api.openai.com/v1/responses", {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        model: "gpt-4.1-mini",
-        input: `
+input: `
 You are an experienced executive team coach.
 
 You are analyzing a 9-question team diagnostic scored 1–5.
@@ -33,39 +9,47 @@ Dimensions:
 - People (Q7–Q9)
 
 First calculate:
-- Alignment score = average of Q1–Q3
-- Organization score = average of Q4–Q6
-- People score = average of Q7–Q9
+- Alignment score = average of Q1–Q3 (1 decimal place)
+- Organization score = average of Q4–Q6 (1 decimal place)
+- People score = average of Q7–Q9 (1 decimal place)
 
-Then produce a concise report:
+Then produce a concise report using ONLY plain text (no markdown, no asterisks, no symbols).
 
-1. Scores by Dimension
-2. Overall Assessment (3–4 sentences)
-3. Key Strengths (3–5 bullets)
-4. Key Development Areas (3–5 bullets)
-5. Targeted Recommendations under:
-   - Alignment
-   - Organization
-   - People
-6. Priority Focus (1–2 highest leverage areas)
+Structure exactly as follows:
 
-Be direct, practical, and specific. Avoid generic language.
+Scores by Dimension
+Alignment: X.X
+Organization: X.X
+People: X.X
+
+Overall Assessment
+(3–4 sentences)
+
+Key Strengths
+- bullet points using hyphens only
+
+Key Development Areas
+- bullet points using hyphens only
+
+Targeted Recommendations
+
+Alignment
+- actions
+
+Organization
+- actions
+
+People
+- actions
+
+Priority Focus
+(1–2 highest leverage areas)
+
+Rules:
+- Do NOT use asterisks or markdown formatting
+- Do NOT include "Team Diagnostic Report"
+- Keep language concise, direct, and practical
 
 Assessment data:
 ${input}
-        `
-      })
-    });
-
-    const data = await response.json();
-
-    const text =
-      data.output?.[0]?.content?.[0]?.text ||
-      "No response generated";
-
-    res.status(200).json({ result: text });
-
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-}
+`
