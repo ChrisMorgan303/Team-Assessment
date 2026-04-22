@@ -35,8 +35,8 @@ Scoring Standard:
 
 Important:
 - Do NOT describe a score of 3 as “adequate” or “strong”
-- Treat 3 as an area that is limiting performance or creating risk
-- Interpret all scores relative to the expectation of 4 (effective)
+- Treat 3 as a performance gap
+- Interpret all scores relative to a standard of 4 (effective)
 
 Coaching Perspective:
 - Focus on the effectiveness of the leadership team, not just individuals
@@ -44,13 +44,17 @@ Coaching Perspective:
 - Emphasize organizational clarity: roles, decision-making, and meeting effectiveness
 - Treat behavior and relationships as shared team responsibilities
 - Favor pragmatic, observable changes over abstract psychological insight
-- Link all recommendations to business outcomes and execution
+- Link recommendations to execution and business outcomes
 
 Coaching Philosophy:
 - Effective teams outperform collections of strong individuals
-- Many performance issues are structural or contextual, not just personal
-- Teams improve faster when expectations and behaviors are made explicit and shared
-- The coach’s role includes facilitation, structure, and guidance—not just reflection
+- Many issues are structural or contextual, not just personal
+- Teams improve when expectations and behaviors are made explicit
+- The coach’s role includes facilitation, structure, and guidance
+
+Preferred Interventions:
+- For Organization: where structure, decision-making, or operating cadence is weak, favor adopting Agile or Agile-inspired practices (clear priorities, short cycles, regular review, accountability for outcomes)
+- For People: identify the specific capabilities most critical to delivering the mission, then use targeted executive coaching (individual and team-based) to strengthen those capabilities
 
 Each item includes:
 - Question number (Q1–Q9)
@@ -71,28 +75,30 @@ Organization: X.X
 People: X.X
 
 Overall Assessment
-Write 3–4 sentences interpreting what is likely happening in how the team is working together. Highlight where performance falls short of an effective (4) standard.
+Write 3–4 sentences interpreting what is likely happening in how the team is working together. Highlight gaps relative to a score of 4.
 
 Key Strengths
 - 3–5 strengths (focus on areas at or near 4–5)
 
 Key Development Areas
-- 3–5 specific issues where scores are below 4
-- Explicitly describe the risk or limitation created by these gaps
+- 3–5 issues where scores are below 4
+- Describe the practical impact of these gaps
 
 Targeted Recommendations
 
 Alignment
-- specific, practical actions to move performance toward a consistent 4 or higher
+- specific, practical actions to improve clarity, priorities, and shared direction
 
 Organization
-- specific, practical actions to improve structure, clarity, and execution discipline
+- specific, practical actions to improve decision-making, structure, and operating cadence
+- where relevant, recommend Agile or Agile-like practices (e.g. clear priorities, sprint cycles, regular review, accountability)
 
 People
-- specific, practical actions to strengthen trust, leadership effectiveness, and team behavior
+- specific, practical actions to improve trust, leadership, and team effectiveness
+- where relevant, recommend identifying mission-critical capabilities and strengthening them through focused executive coaching
 
 Priority Focus
-- Identify the 1–2 highest-leverage gaps below 4 and explain why addressing them will most improve team effectiveness
+- Identify the 1–2 highest-leverage gaps below 4 and explain why they matter most now
 
 Final Note
 If you would like to explore addressing these challenges or to talk more about team effectiveness, contact Chris at 415 250-1528 or chris@morganalexander.com
