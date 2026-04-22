@@ -100,8 +100,9 @@ Organization
 - where relevant, recommend:
   • establishing and maintaining a prioritized backlog
   • regular review and reprioritization of priorities
-  • using team meetings for alignment, decision-making, and clear tasking
-  • reinforcing accountability and follow-through
+  • using team meetings to align on priorities, make decisions, and assign ownership
+  • reinforcing accountability and follow-through between meetings
+  • structuring meetings to balance disciplined decision-making with intentional space for open discussion, reflection, and creative contribution (not all valuable work is agenda-driven)
 
 People
 - specific, practical actions to improve trust, leadership, and team effectiveness
@@ -123,7 +124,7 @@ Rules:
 - Do not add extra sections
 
 Assessment data:
-${input}
+\${input}
         `
       })
     });
