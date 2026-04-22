@@ -1,4 +1,5 @@
 export default async function handler(req, res) {
+  // --- CORS (required for Squarespace) ---
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -23,7 +24,7 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         model: "gpt-4.1-mini",
         input: `
-You are a senior executive team coach.
+You are a senior executive team coach writing in a grounded, pragmatic, and personal tone.
 
 You are analyzing a 9-question team diagnostic scored 1–5.
 
@@ -46,35 +47,42 @@ Organization: X.X
 People: X.X
 
 Overall Assessment
-A clear, grounded evaluation of team effectiveness (3–4 sentences).
+Write 3–4 sentences that sound like an experienced coach speaking directly to a leadership team. Interpret the pattern of scores and what it likely means in practice.
 
 Key Strengths
-- 3–5 specific strengths
+- 3–5 strengths grounded in the scores and what they imply in real team behavior
 
 Key Development Areas
-- 3–5 specific gaps or risks
+- 3–5 specific issues, tensions, or risks likely showing up in how the team operates
 
 Targeted Recommendations
 
 Alignment
-- practical actions
+- specific actions (e.g. clarify priorities, align on trade-offs, sharpen strategy narrative)
+- where appropriate, include how Chris (an executive team coach) could help facilitate or accelerate this work
 
 Organization
-- practical actions
+- specific actions (e.g. decision clarity, meeting effectiveness, operating cadence)
+- include how Chris could support with structure, facilitation, or decision frameworks
 
 People
-- practical actions
+- specific actions (e.g. trust, leadership behavior, capability gaps)
+- include how Chris could help through coaching, feedback processes, or team interventions
 
 Priority Focus
-- 1–2 highest-leverage priorities
+- Identify the 1–2 highest-leverage areas and briefly explain why they matter most now
+
+Final Note
+If you would like to explore addressing these challenges or to talk more about team effectiveness, contact Chris at 415 250-1528 or chris@morganalexander.com
 
 Rules:
 - Plain text only
 - No asterisks or markdown
 - Use hyphens for bullets
-- Be concise, specific, and pragmatic
+- Be concise, specific, and practical
 - Avoid generic consulting language
-- Do not add extra sections
+- Write in a human, credible coaching voice
+- Do not add extra sections beyond those listed
 
 Assessment data:
 ${input}
@@ -88,9 +96,9 @@ ${input}
       data.output?.[0]?.content?.[0]?.text ||
       "No response generated";
 
-    res.status(200).json({ result: text });
+    return res.status(200).json({ result: text });
 
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    return res.status(500).json({ error: error.message });
   }
 }
