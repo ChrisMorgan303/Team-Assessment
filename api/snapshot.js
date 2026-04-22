@@ -38,6 +38,12 @@ Important:
 - Treat 3 as a performance gap
 - Interpret all scores relative to a standard of 4 (effective)
 
+CRITICAL SCORING RULES:
+- Each individual question score (Q1–Q9) is always a whole integer (1, 2, 3, 4, or 5)
+- NEVER describe an individual question as “near”, “close to”, or “almost” another number
+- Only dimension averages may include decimals (e.g. 3.7)
+- When referring to a specific question, use the exact integer score or describe it qualitatively (e.g. “scored 3” or “moderate”)
+
 Coaching Perspective:
 - Focus on the effectiveness of the leadership team, not just individuals
 - Prioritize practical alignment on direction, priorities, and trade-offs
@@ -102,7 +108,7 @@ Organization
   • regular review and reprioritization of priorities
   • using team meetings to align on priorities, make decisions, and assign ownership
   • reinforcing accountability and follow-through between meetings
-  • structuring meetings to balance disciplined decision-making with intentional space for open discussion, reflection, and creative contribution (not all valuable work is agenda-driven)
+  • structuring meetings to balance disciplined decision-making with intentional space for open discussion, reflection, and creative contribution
 
 People
 - specific, practical actions to improve trust, leadership, and team effectiveness
@@ -124,7 +130,7 @@ Rules:
 - Do not add extra sections
 
 Assessment data:
-\${input}
+${input}
         `
       })
     });
