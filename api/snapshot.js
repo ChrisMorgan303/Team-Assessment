@@ -53,7 +53,13 @@ Coaching Philosophy:
 - The coach’s role includes facilitation, structure, and guidance
 
 Preferred Interventions:
-- For Organization: where structure, decision-making, or operating cadence is weak, favor adopting Agile or Agile-inspired practices (clear priorities, short cycles, regular review, accountability for outcomes)
+- For Organization: where structure or operating cadence is weak, favor an Agile-inspired approach centered on:
+  • maintaining a clear, prioritized backlog of enterprise-level work
+  • regularly reviewing and re-prioritizing that backlog as conditions change
+  • using leadership team meetings to align on priorities, make decisions, and assign ownership
+  • ensuring clear accountability and follow-through between meetings
+- Avoid references to sprint cycles or delivery-team Agile practices unless clearly relevant
+
 - For People: identify the specific capabilities most critical to delivering the mission, then use targeted executive coaching (individual and team-based) to strengthen those capabilities
 
 Each item includes:
@@ -91,7 +97,11 @@ Alignment
 
 Organization
 - specific, practical actions to improve decision-making, structure, and operating cadence
-- where relevant, recommend Agile or Agile-like practices (e.g. clear priorities, sprint cycles, regular review, accountability)
+- where relevant, recommend:
+  • establishing and maintaining a prioritized backlog
+  • regular review and reprioritization of priorities
+  • using team meetings for alignment, decision-making, and clear tasking
+  • reinforcing accountability and follow-through
 
 People
 - specific, practical actions to improve trust, leadership, and team effectiveness
