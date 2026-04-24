@@ -37,20 +37,27 @@ First calculate:
 - Organization score = average of Q4–Q6 (1 decimal)
 - People score = average of Q7–Q9 (1 decimal)
 
+---
+
 CLASSIFY PERFORMANCE:
 
 HIGH PERFORMANCE:
 All three dimensions ≥ 4.3
 
-MID RANGE:
+STRONG BUT NOT CONSISTENT:
 All dimensions ≥ 3.5 AND at least one < 4.3
 
-LOW / MIXED:
-Any dimension < 3.5
+MIXED EFFECTIVENESS:
+At least one dimension between 3.0 and 3.4
+
+LOW EFFECTIVENESS:
+Any dimension < 3.0
 
 ---
 
-HIGH PERFORMANCE INSTRUCTIONS:
+INSTRUCTIONS BY CATEGORY:
+
+HIGH PERFORMANCE:
 - Emphasize that the team is highly effective
 - Do NOT create artificial problems
 - Do NOT treat scores of 4+ as deficiencies
@@ -58,22 +65,24 @@ HIGH PERFORMANCE INSTRUCTIONS:
 - Limit recommendations to 2–3 total (not per category)
 - Focus on sustaining performance and avoiding over-complexity
 
----
+STRONG BUT NOT CONSISTENT:
+- Describe the team as effective but not yet consistent
+- Emphasize strengthening alignment and execution discipline
+- Identify 1–2 areas to sharpen
+- Keep recommendations focused and limited
 
-MID RANGE INSTRUCTIONS:
-- Describe the team as generally effective but uneven
-- Identify 1–2 specific areas where consistency can improve
-- Avoid overloading with recommendations
-- Provide focused, practical actions tied to weakest dimension(s)
-- Keep tone constructive, not critical
+MIXED EFFECTIVENESS:
+- Describe the team as uneven with a clear constraint
+- Identify the lowest dimension as a limiting factor
+- Be direct about impact without being harsh
+- Focus recommendations primarily on that constraint
+- Avoid overloading with actions
 
----
-
-LOW / MIXED PERFORMANCE INSTRUCTIONS:
+LOW EFFECTIVENESS:
 - Clearly identify development areas
 - Provide specific, practical recommendations
-- Focus on the lowest scoring dimensions
-- Maintain direct but balanced tone
+- Focus on weakest dimensions
+- Maintain direct, constructive tone
 
 ---
 
@@ -85,7 +94,7 @@ Organization: X.X
 People: X.X
 
 Overall Assessment
-(3–4 sentences, tone depends on performance tier)
+(3–4 sentences — MUST reflect the performance category accurately)
 
 Key Strengths
 - bullet points
@@ -109,12 +118,17 @@ Priority Focus
 Final Note
 If you would like to explore addressing these challenges or to talk more about team effectiveness, contact Chris at 415-250-1528 or chris@morganalexander.com
 
-Rules:
+---
+
+RULES:
 - Do NOT reference question numbers (no “Q1”, etc.)
-- Do NOT include scores in commentary
-- Keep language concise and executive-level
+- Do NOT include scores in narrative commentary
+- Scores of 4 represent effective performance — do not frame as problems
 - Avoid generic consulting language
-- Recognize when less intervention is appropriate
+- Be concise, specific, and credible
+- Recognize when a team is uneven vs. strong vs. excellent
+
+---
 
 Assessment data:
 ${input}
