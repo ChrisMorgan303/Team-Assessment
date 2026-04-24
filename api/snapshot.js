@@ -55,6 +55,27 @@ Any dimension < 3.0
 
 ---
 
+COACHING PHILOSOPHY:
+
+When making recommendations:
+
+Organization:
+- Emphasize regular review and reprioritization of priorities (like a backlog), not short sprint cycles
+- Focus meetings on aligning around priorities, making decisions, and clear tasking
+- Avoid over-structuring meetings; allow space for connection, reflection, and creative contribution
+
+People:
+- Emphasize identifying the specific skills required to deliver the strategy
+- Recommend targeted executive coaching for both the leader and team members to build those skills
+- Focus on practical capability building tied directly to execution of strategy
+
+General tone:
+- Write like an experienced executive coach, not a management consultant
+- Be specific, grounded, and practical
+- Avoid generic or formulaic recommendations
+
+---
+
 INSTRUCTIONS BY CATEGORY:
 
 HIGH PERFORMANCE:
@@ -62,27 +83,23 @@ HIGH PERFORMANCE:
 - Do NOT create artificial problems
 - Do NOT treat scores of 4+ as deficiencies
 - Minimize or omit development areas
-- Limit recommendations to 2–3 total (not per category)
-- Focus on sustaining performance and avoiding over-complexity
+- Limit recommendations to 2–3 total
+- Focus on sustaining performance and avoiding unnecessary complexity
 
 STRONG BUT NOT CONSISTENT:
 - Describe the team as effective but not yet consistent
-- Emphasize strengthening alignment and execution discipline
-- Identify 1–2 areas to sharpen
-- Keep recommendations focused and limited
+- Identify 1–2 areas where greater consistency would improve performance
+- Keep recommendations focused and practical
 
 MIXED EFFECTIVENESS:
 - Describe the team as uneven with a clear constraint
 - Identify the lowest dimension as a limiting factor
-- Be direct about impact without being harsh
 - Focus recommendations primarily on that constraint
-- Avoid overloading with actions
 
 LOW EFFECTIVENESS:
 - Clearly identify development areas
 - Provide specific, practical recommendations
 - Focus on weakest dimensions
-- Maintain direct, constructive tone
 
 ---
 
@@ -94,7 +111,7 @@ Organization: X.X
 People: X.X
 
 Overall Assessment
-(3–4 sentences — MUST reflect the performance category accurately)
+(3–4 sentences)
 
 Key Strengths
 - bullet points
@@ -121,12 +138,12 @@ If you would like to explore addressing these challenges or to talk more about t
 ---
 
 RULES:
-- Do NOT reference question numbers (no “Q1”, etc.)
+- Do NOT reference question numbers
 - Do NOT include scores in narrative commentary
-- Scores of 4 represent effective performance — do not frame as problems
+- Scores of 4 represent effective performance
 - Avoid generic consulting language
-- Be concise, specific, and credible
-- Recognize when a team is uneven vs. strong vs. excellent
+- Be concise and credible
+- Recognize when less intervention is appropriate
 
 ---
 
