@@ -16,26 +16,21 @@ export default async function handler(req, res) {
 
   try {
 
-    const { input } = req.body;
-
     // -----------------------------------
-    // EXTRACT SCORES
+    // RECEIVE DATA
     // -----------------------------------
 
-    const lines = input.split("\n");
-
-    const scores = lines.map(line => {
-
-      const match =
-        line.match(/Score:\s*(\d+)/);
-
-      return match
-        ? parseInt(match[1])
-        : 0;
-    });
+    const { input, answers } = req.body;
 
     // -----------------------------------
-    // CALCULATE AVERAGES
+    // SCORES
+    // -----------------------------------
+
+    const scores =
+      answers.map(a => Number(a.score));
+
+    // -----------------------------------
+    // AVERAGES
     // -----------------------------------
 
     const alignmentAvg = (
@@ -94,7 +89,7 @@ export default async function handler(req, res) {
     }
 
     // -----------------------------------
-    // OPENAI CALL
+    // OPENAI
     // -----------------------------------
 
     const response = await fetch(
@@ -191,6 +186,12 @@ LOW EFFECTIVENESS:
 OUTPUT FORMAT
 -----------------------------------
 
+Use clear spacing and line breaks between all sections.
+
+Each heading should appear on its own line.
+
+Use bullet formatting where requested.
+
 Scores by Dimension
 
 Alignment: X.X
@@ -250,7 +251,7 @@ RULES
       "No response generated";
 
     // -----------------------------------
-    // RETURN RESPONSE
+    // RETURN
     // -----------------------------------
 
     res.status(200).json({
