@@ -16,10 +16,6 @@ export default async function handler(req, res) {
 
   try {
 
-    // -----------------------------------
-    // RECEIVE DATA
-    // -----------------------------------
-
     const { input, answers } = req.body;
 
     // -----------------------------------
@@ -28,10 +24,6 @@ export default async function handler(req, res) {
 
     const scores =
       answers.map(a => Number(a.score));
-
-    // -----------------------------------
-    // AVERAGES
-    // -----------------------------------
 
     const alignmentAvg = (
       (scores[0] + scores[1] + scores[2]) / 3
@@ -141,88 +133,58 @@ COACHING PHILOSOPHY
 -----------------------------------
 
 Organization:
-- Emphasize regular review and reprioritization of priorities (like a backlog), not short sprint cycles
+- Emphasize regular review and reprioritization of priorities
 - Focus meetings on aligning around priorities, making decisions, and clear tasking
-- Avoid over-structuring meetings; allow space for connection, reflection, and creative contribution
+- Avoid over-structuring meetings
 
 People:
 - Emphasize identifying the specific skills required to deliver the strategy
-- Recommend targeted executive coaching for both the leader and team members to build those skills
-- Focus on practical capability building tied directly to execution of strategy
+- Recommend targeted executive coaching
+- Focus on practical capability building
 
 General tone:
-- Write like an experienced executive coach, not a management consultant
-- Be specific, grounded, and practical
-- Avoid generic or formulaic recommendations
-
------------------------------------
-INSTRUCTIONS BY CATEGORY
------------------------------------
-
-HIGH PERFORMANCE:
-- Emphasize that the team is highly effective
-- Do NOT create artificial problems
-- Do NOT treat scores of 4+ as deficiencies
-- Minimize or omit development areas
-- Limit recommendations to 2–3 total
-- Focus on sustaining performance and avoiding unnecessary complexity
-
-STRONG BUT NOT CONSISTENT:
-- Describe the team as effective but not yet consistent
-- Identify 1–2 areas where greater consistency would improve performance
-- Keep recommendations focused and practical
-
-MIXED EFFECTIVENESS:
-- Describe the team as uneven with a clear constraint
-- Identify the lowest dimension as a limiting factor
-- Focus recommendations primarily on that constraint
-
-LOW EFFECTIVENESS:
-- Clearly identify development areas
-- Provide specific, practical recommendations
-- Focus on weakest dimensions
+- Write like an experienced executive coach
+- Be practical and credible
+- Avoid generic consulting language
 
 -----------------------------------
 OUTPUT FORMAT
 -----------------------------------
 
-Use clear spacing and line breaks between all sections.
+Return ONLY the following sections.
 
-Each heading should appear on its own line.
+Do NOT repeat numeric scores.
 
-Use bullet formatting where requested.
+Do NOT repeat classifications.
 
-Scores by Dimension
+Do NOT create extra headings.
 
-Alignment: X.X
-Organization: X.X
-People: X.X
+Use concise paragraphs and bullet points.
 
 Overall Assessment
 (3–4 sentences)
 
 Key Strengths
-- bullet points
+- bullets
 
 Key Development Areas
-- include ONLY if meaningful gaps exist
+- bullets only if meaningful gaps exist
 
 Targeted Recommendations
 
 Alignment
-- actions (only if needed)
+- actions only if needed
 
 Organization
-- actions (only if needed)
+- actions only if needed
 
 People
-- actions (only if needed)
+- actions only if needed
 
 Priority Focus
-(1–2 highest leverage priorities OR sustaining focus if high-performing)
+(1–2 highest leverage priorities)
 
 Final Note
-
 If you would like to explore addressing these challenges or to talk more about team effectiveness, contact Chris at 415-250-1528 or chris@morganalexander.com
 
 -----------------------------------
@@ -232,12 +194,10 @@ RULES
 - Use the provided scores and classification exactly as given
 - Do NOT recalculate scores
 - Do NOT reference question numbers
-- Do NOT include scores in narrative commentary
 - Scores of 4 represent effective performance
 - Avoid generic consulting language
-- Be concise and credible
+- Be concise and practical
 - Recognize when less intervention is appropriate
-- Look for meaningful patterns in the question-level responses
 
           `
         })
@@ -249,10 +209,6 @@ RULES
     const text =
       data.output?.[0]?.content?.[0]?.text ||
       "No response generated";
-
-    // -----------------------------------
-    // RETURN
-    // -----------------------------------
 
     res.status(200).json({
 
