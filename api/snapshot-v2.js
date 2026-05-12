@@ -16,73 +16,113 @@ export default async function handler(req, res) {
 
   try {
 
-    const { input, answers } = req.body;
+    const {
+      input,
+      answers
+    } = req.body;
 
-    // -----------------------------------
-    // SCORES
-    // -----------------------------------
+    // ------------------------------------
+    // DETERMINISTIC SCORING
+    // ------------------------------------
 
-    const scores =
-      answers.map(a => Number(a.score));
+    const alignmentScores =
+      answers
+        .slice(0, 3)
+        .map(a => Number(a.score));
 
-    const alignmentAvg = (
-      (scores[0] + scores[1] + scores[2]) / 3
-    ).toFixed(1);
+    const organizationScores =
+      answers
+        .slice(3, 6)
+        .map(a => Number(a.score));
 
-    const organizationAvg = (
-      (scores[3] + scores[4] + scores[5]) / 3
-    ).toFixed(1);
+    const peopleScores =
+      answers
+        .slice(6, 9)
+        .map(a => Number(a.score));
 
-    const peopleAvg = (
-      (scores[6] + scores[7] + scores[8]) / 3
-    ).toFixed(1);
+    const avg = arr =>
+      Number(
+        (
+          arr.reduce((a, b) => a + b, 0)
+          / arr.length
+        ).toFixed(1)
+      );
 
-    // -----------------------------------
+    const alignment =
+      avg(alignmentScores);
+
+    const organization =
+      avg(organizationScores);
+
+    const people =
+      avg(peopleScores);
+
+    // ------------------------------------
     // CLASSIFICATION
-    // -----------------------------------
+    // ------------------------------------
 
-    let classification = "";
+    let classification =
+      "MIXED EFFECTIVENESS";
 
     if (
-      alignmentAvg >= 4.3 &&
-      organizationAvg >= 4.3 &&
-      peopleAvg >= 4.3
+      alignment >= 4.3 &&
+      organization >= 4.3 &&
+      people >= 4.3
     ) {
 
       classification =
         "HIGH PERFORMANCE";
 
     } else if (
-
-      alignmentAvg >= 3.5 &&
-      organizationAvg >= 3.5 &&
-      peopleAvg >= 3.5
-
+      alignment >= 3.5 &&
+      organization >= 3.5 &&
+      people >= 3.5
     ) {
 
       classification =
         "STRONG BUT NOT CONSISTENT";
 
     } else if (
-
-      alignmentAvg < 3.0 ||
-      organizationAvg < 3.0 ||
-      peopleAvg < 3.0
-
+      alignment < 3.0 ||
+      organization < 3.0 ||
+      people < 3.0
     ) {
 
       classification =
         "LOW EFFECTIVENESS";
-
-    } else {
-
-      classification =
-        "MIXED EFFECTIVENESS";
     }
 
-    // -----------------------------------
-    // OPENAI
-    // -----------------------------------
+    // ------------------------------------
+    // LOWEST DIMENSION
+    // ------------------------------------
+
+    const dimensions = [
+
+      {
+        name: "Alignment",
+        score: alignment
+      },
+
+      {
+        name: "Organization",
+        score: organization
+      },
+
+      {
+        name: "People",
+        score: people
+      }
+
+    ];
+
+    const lowestDimension =
+      [...dimensions]
+        .sort((a, b) => a.score - b.score)[0]
+        .name;
+
+    // ------------------------------------
+    // OPENAI CALL
+    // ------------------------------------
 
     const response = await fetch(
 
@@ -92,11 +132,8 @@ export default async function handler(req, res) {
         method: "POST",
 
         headers: {
-          "Authorization":
-            `Bearer ${process.env.OPENAI_API_KEY}`,
-
-          "Content-Type":
-            "application/json"
+          "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
+          "Content-Type": "application/json"
         },
 
         body: JSON.stringify({
@@ -109,57 +146,158 @@ You are an experienced executive team coach.
 
 You are analyzing a 9-question executive team diagnostic.
 
+The arithmetic and classification have already been calculated.
+
+Do NOT recalculate scores.
+
 -----------------------------------
-DETERMINISTIC SCORES
------------------------------------
 
-Alignment Score: ${alignmentAvg}
+SCORES
 
-Organization Score: ${organizationAvg}
-
-People Score: ${peopleAvg}
+Alignment: ${alignment}
+Organization: ${organization}
+People: ${people}
 
 Overall Classification:
 ${classification}
 
------------------------------------
-ASSESSMENT DATA
------------------------------------
-
-${input}
+Primary Constraint:
+${lowestDimension}
 
 -----------------------------------
+
 COACHING PHILOSOPHY
+
+Write like a seasoned executive coach.
+
+The audience is senior executives.
+
+The tone should feel:
+- grounded
+- credible
+- practical
+- experienced
+- commercially aware
+
+Avoid:
+- generic consulting language
+- HR jargon
+- exaggerated positivity
+- therapy language
+- corporate clichés
+
+The writing should sound:
+- concise
+- thoughtful
+- operationally intelligent
+- strategically aware
+
+Recommendations should:
+- connect directly to execution
+- reflect real leadership dynamics
+- recognize organizational tradeoffs
+- avoid over-intervening
+
 -----------------------------------
 
-Organization:
-- Emphasize regular review and reprioritization of priorities
-- Focus meetings on aligning around priorities, making decisions, and clear tasking
-- Avoid over-structuring meetings
+ORGANIZATION PHILOSOPHY
 
-People:
-- Emphasize identifying the specific skills required to deliver the strategy
-- Recommend targeted executive coaching
-- Focus on practical capability building
+Strong executive teams:
+- regularly revisit priorities
+- align around enterprise goals
+- make timely decisions
+- use meetings for alignment and execution
+- avoid unnecessary process complexity
 
-General tone:
-- Write like an experienced executive coach
-- Be practical and credible
-- Avoid generic consulting language
+Do NOT recommend:
+- agile ceremonies
+- excessive structure
+- heavy process systems
+
+Prefer:
+- decision-focused meetings
+- clarity of ownership
+- operating cadence
+- prioritization discipline
 
 -----------------------------------
+
+PEOPLE PHILOSOPHY
+
+Strong teams:
+- have trust in leadership
+- possess the skills required to execute strategy
+- collaborate effectively across functions
+- maintain accountability while supporting each other
+
+When discussing capability:
+- focus on strategic execution capability
+- identify gaps tied to delivery
+- emphasize targeted coaching and development
+- avoid generic “team building”
+
+-----------------------------------
+
+HIGH PERFORMANCE GUIDANCE
+
+If classified HIGH PERFORMANCE:
+- emphasize effectiveness
+- avoid inventing problems
+- minimize development areas
+- recommendations should focus on sustaining effectiveness
+- keep recommendations minimal
+
+-----------------------------------
+
+STRONG BUT NOT CONSISTENT GUIDANCE
+
+If classified STRONG BUT NOT CONSISTENT:
+- describe the team as effective but uneven
+- identify 1–2 areas where consistency would improve execution
+- recommendations should be focused and restrained
+
+-----------------------------------
+
+MIXED EFFECTIVENESS GUIDANCE
+
+If classified MIXED EFFECTIVENESS:
+- clearly identify the limiting dimension
+- explain how it constrains execution
+- focus recommendations primarily there
+
+-----------------------------------
+
+LOW EFFECTIVENESS GUIDANCE
+
+If classified LOW EFFECTIVENESS:
+- clearly identify constraints
+- provide grounded recommendations
+- avoid overwhelming the reader
+- focus on leverage points
+
+-----------------------------------
+
+OUTPUT RULES
+
+VERY IMPORTANT:
+
+- Do NOT repeat the scores section in narrative text
+- Do NOT reference question numbers
+- Do NOT say “according to the assessment”
+- Do NOT over-explain
+- Do NOT create too many bullets
+- Use executive-level language
+- Keep the report concise
+- Recommendations should feel high-value and specific
+
+Use:
+- 3 bullet points maximum for strengths
+- 3 bullet points maximum for development areas
+- 2 bullet points maximum per recommendation section
+
+-----------------------------------
+
 OUTPUT FORMAT
------------------------------------
-
-Return ONLY the following sections.
-
-Do NOT repeat numeric scores.
-
-Do NOT repeat classifications.
-
-Do NOT create extra headings.
-
-Use concise paragraphs and bullet points.
 
 Overall Assessment
 (3–4 sentences)
@@ -168,58 +306,58 @@ Key Strengths
 - bullets
 
 Key Development Areas
-- bullets only if meaningful gaps exist
+- ONLY if meaningful gaps exist
 
 Targeted Recommendations
 
 Alignment
-- actions only if needed
+- bullets only if needed
 
 Organization
-- actions only if needed
+- bullets only if needed
 
 People
-- actions only if needed
+- bullets only if needed
 
 Priority Focus
-(1–2 highest leverage priorities)
+(1 concise paragraph)
 
 Final Note
 If you would like to explore addressing these challenges or to talk more about team effectiveness, contact Chris at 415-250-1528 or chris@morganalexander.com
 
 -----------------------------------
-RULES
------------------------------------
 
-- Use the provided scores and classification exactly as given
-- Do NOT recalculate scores
-- Do NOT reference question numbers
-- Scores of 4 represent effective performance
-- Avoid generic consulting language
-- Be concise and practical
-- Recognize when less intervention is appropriate
+RAW ASSESSMENT DATA
+
+${input}
 
           `
         })
       }
     );
 
-    const data = await response.json();
+    const data =
+      await response.json();
 
     const text =
-      data.output?.[0]?.content?.[0]?.text ||
-      "No response generated";
+      data.output?.[0]?.content?.[0]?.text
+      || "No response generated";
+
+    // ------------------------------------
+    // RETURN
+    // ------------------------------------
 
     res.status(200).json({
 
       result: text,
 
       scores: {
-        alignment: alignmentAvg,
-        organization: organizationAvg,
-        people: peopleAvg,
-        classification
-      }
+        alignment,
+        organization,
+        people
+      },
+
+      classification
 
     });
 
