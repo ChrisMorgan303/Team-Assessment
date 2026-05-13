@@ -270,6 +270,11 @@ const { data: supabaseData, error: supabaseError } = await supabase
 
 console.log("SUPABASE RESULT:", supabaseData);
 console.log("SUPABASE ERROR:", supabaseError);
+if (error) {
+  return res.status(500).json({
+    supabase_error: error
+  });
+}    
     // ------------------------------------
     // RETURN
     // ------------------------------------
