@@ -259,9 +259,9 @@ ${input}
     // SAVE TO SUPABASE
     // ------------------------------------
 
-    await supabase
-      .from("team_responses")
-      .insert([{
+const { data, error } = await supabase
+  .from("team_responses")
+  .insert([{
         team_code: teamCode || null,
         respondent_type: respondentType || "unknown",
         answers,
