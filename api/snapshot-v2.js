@@ -1,3 +1,10 @@
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_ANON_KEY
+);
+
 export default async function handler(req, res) {
 
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -18,7 +25,9 @@ export default async function handler(req, res) {
 
     const {
       input,
-      answers
+      answers,
+      teamCode,
+      respondentType
     } = req.body;
 
     // ------------------------------------
@@ -168,7 +177,7 @@ ${lowestDimension}
 
 COACHING PHILOSOPHY
 
-Write like a seasoned executive coach.
+Write like a seasoned executive team coach.
 
 The audience is senior executives.
 
@@ -197,103 +206,6 @@ Recommendations should:
 - reflect real leadership dynamics
 - recognize organizational tradeoffs
 - avoid over-intervening
-
------------------------------------
-
-ORGANIZATION PHILOSOPHY
-
-Strong executive teams:
-- regularly revisit priorities
-- align around enterprise goals
-- make timely decisions
-- use meetings for alignment and execution
-- avoid unnecessary process complexity
-
-Do NOT recommend:
-- agile ceremonies
-- excessive structure
-- heavy process systems
-
-Prefer:
-- decision-focused meetings
-- clarity of ownership
-- operating cadence
-- prioritization discipline
-
------------------------------------
-
-PEOPLE PHILOSOPHY
-
-Strong teams:
-- have trust in leadership
-- possess the skills required to execute strategy
-- collaborate effectively across functions
-- maintain accountability while supporting each other
-
-When discussing capability:
-- focus on strategic execution capability
-- identify gaps tied to delivery
-- emphasize targeted coaching and development
-- avoid generic “team building”
-
------------------------------------
-
-HIGH PERFORMANCE GUIDANCE
-
-If classified HIGH PERFORMANCE:
-- emphasize effectiveness
-- avoid inventing problems
-- minimize development areas
-- recommendations should focus on sustaining effectiveness
-- keep recommendations minimal
-
------------------------------------
-
-STRONG BUT NOT CONSISTENT GUIDANCE
-
-If classified STRONG BUT NOT CONSISTENT:
-- describe the team as effective but uneven
-- identify 1–2 areas where consistency would improve execution
-- recommendations should be focused and restrained
-
------------------------------------
-
-MIXED EFFECTIVENESS GUIDANCE
-
-If classified MIXED EFFECTIVENESS:
-- clearly identify the limiting dimension
-- explain how it constrains execution
-- focus recommendations primarily there
-
------------------------------------
-
-LOW EFFECTIVENESS GUIDANCE
-
-If classified LOW EFFECTIVENESS:
-- clearly identify constraints
-- provide grounded recommendations
-- avoid overwhelming the reader
-- focus on leverage points
-
------------------------------------
-
-OUTPUT RULES
-
-VERY IMPORTANT:
-
-- Do NOT repeat the scores section in narrative text
-- Do NOT reference question numbers
-- Do NOT say “according to the assessment”
-- Do NOT over-explain
-- Do NOT create too many bullets
-- Use executive-level language
-- Keep the report concise
-- Recommendations should feel high-value and specific
-
-Use:
-- 3 bullet points maximum for strengths
-- 3 bullet points maximum for development areas
-- 2 bullet points maximum per recommendation section
 
 -----------------------------------
 
@@ -342,6 +254,19 @@ ${input}
     const text =
       data.output?.[0]?.content?.[0]?.text
       || "No response generated";
+
+    // ------------------------------------
+    // SAVE TO SUPABASE
+    // ------------------------------------
+
+    await supabase
+      .from("team_responses")
+      .insert([{
+        team_code: teamCode || null,
+        respondent_type: respondentType || "unknown",
+        answers,
+        report: text
+      }]);
 
     // ------------------------------------
     // RETURN
