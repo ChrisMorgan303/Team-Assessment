@@ -259,16 +259,17 @@ ${input}
     // SAVE TO SUPABASE
     // ------------------------------------
 
-const { data, error } = await supabase
+const { data: supabaseData, error: supabaseError } = await supabase
   .from("team_responses")
   .insert([{
-        team_code: teamCode || null,
-        respondent_type: respondentType || "unknown",
-        answers,
-        report: text
-      }]);
-console.log("SUPABASE RESULT:", data);
-console.log("SUPABASE ERROR:", error);
+    team_code: teamCode || null,
+    respondent_type: respondentType || "unknown",
+    answers,
+    report: text
+  }]);
+
+console.log("SUPABASE RESULT:", supabaseData);
+console.log("SUPABASE ERROR:", supabaseError);
     // ------------------------------------
     // RETURN
     // ------------------------------------
