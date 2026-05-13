@@ -267,7 +267,8 @@ ${input}
         answers,
         report: text
       }]);
-
+console.log("SUPABASE RESULT:", data);
+console.log("SUPABASE ERROR:", error);
     // ------------------------------------
     // RETURN
     // ------------------------------------
