@@ -251,9 +251,10 @@ ${input}
     const data =
       await response.json();
 
-    const text =
-      data.output?.[0]?.content?.[0]?.text
-      || "No response generated";
+const text =
+  response.output_text ||
+  response.output?.[0]?.content?.[0]?.text ||
+  "No report generated.";
 
     // ------------------------------------
     // SAVE TO SUPABASE
