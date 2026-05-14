@@ -31,23 +31,23 @@ export default async function handler(req, res) {
     } = req.body;
 
     // ------------------------------------
-    // DETERMINISTIC SCORING
-    // ------------------------------------
+// DETERMINISTIC SCORING
+// ------------------------------------
 
-    const alignmentScores =
-      answers
-        .slice(0, 3)
-        .map(a => Number(a.score));
+const alignmentScores =
+  answers
+    .slice(0, 3)
+    .map(a => Number(a));
 
-    const organizationScores =
-      answers
-        .slice(3, 6)
-        .map(a => Number(a.score));
+const organizationScores =
+  answers
+    .slice(3, 6)
+    .map(a => Number(a));
 
-    const peopleScores =
-      answers
-        .slice(6, 9)
-        .map(a => Number(a.score));
+const peopleScores =
+  answers
+    .slice(6, 9)
+    .map(a => Number(a));
 
     const avg = arr =>
       Number(
