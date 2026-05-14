@@ -249,11 +249,11 @@ ${input}
     );
 
     const data =
-      await response.json();
+  await response.json();
 
 const text =
-  response.output_text ||
-  response.output?.[0]?.content?.[0]?.text ||
+  data.output_text ||
+  data.output?.[0]?.content?.[0]?.text ||
   "No report generated.";
 
     // ------------------------------------
