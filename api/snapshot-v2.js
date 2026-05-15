@@ -248,8 +248,13 @@ ${input}
       }
     );
 
-    const data =
+const data =
   await response.json();
+
+console.log(
+  "OPENAI RAW:",
+  JSON.stringify(data, null, 2)
+);
 
 const text =
   data.output_text ||
