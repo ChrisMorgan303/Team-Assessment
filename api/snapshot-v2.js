@@ -265,22 +265,31 @@ const text =
     // SAVE TO SUPABASE
     // ------------------------------------
 
-const { data: supabaseData, error: supabaseError } = await supabase
-  .from("team_responses")
-  .insert([{
-    team_code: teamCode || null,
-    respondent_type: respondentType || "unknown",
-    answers,
-    report: text
-  }]);
+const { data: supabaseData, error: supabaseError } =
+  await supabase
+    .from("team_responses")
+    .insert([{
+      team_code: teamCode || null,
+      respondent_type: respondentType || "unknown",
+      answers,
+      report: text
+    }]);
 
-console.log("SUPABASE RESULT:", supabaseData);
-console.log("SUPABASE ERROR:", supabaseError);
-if (error) {
+console.log(
+  "SUPABASE RESULT:",
+  supabaseData
+);
+
+console.log(
+  "SUPABASE ERROR:",
+  supabaseError
+);
+
+if (supabaseError) {
   return res.status(500).json({
-    supabase_error: error
+    supabase_error: supabaseError
   });
-}    
+}
     // ------------------------------------
     // RETURN
     // ------------------------------------
