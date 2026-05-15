@@ -253,7 +253,7 @@ const data =
 
 console.log(
   "OPENAI RAW:",
-  JSON.stringify(data, null, 2)
+  data
 );
 
 const text =
