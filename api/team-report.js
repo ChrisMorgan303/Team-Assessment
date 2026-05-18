@@ -77,7 +77,8 @@ const report =
 
 return res.status(200).json({
   success: true,
-  report
+  report,
+  totalResponses: data.length
 });
 
 }
