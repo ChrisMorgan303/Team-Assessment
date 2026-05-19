@@ -52,7 +52,64 @@ export default async function handler(req,res){
         .from("team_responses")
         .select("*")
         .eq("team_code",teamCode);
+// ------------------------------------
+// QUESTION ANALYTICS
+// ------------------------------------
 
+const questionLabels = [
+
+"Strategy clarity",
+"Priority clarity",
+"Shared responsibility",
+
+"Structure",
+"Decision-making",
+"Meeting productivity",
+
+"Trust in leader",
+"Team capability",
+"Working relationships"
+
+];
+
+const questionStats =
+questionLabels.map((label,index)=>{
+
+const scores =
+data
+.map(r=>r.answers?.[index])
+.filter(v=>v);
+
+const average =
+scores.length
+? scores.reduce((a,b)=>a+b,0)/scores.length
+:0;
+
+const distribution=[1,2,3,4,5]
+.map(score=>
+scores.filter(s=>s===score).length
+);
+
+return{
+
+label,
+
+average:
+Number(
+average.toFixed(1)
+),
+
+distribution
+
+};
+
+})
+
+.sort(
+(a,b)=>
+b.average-a.average
+);
+    
     if(error){
 
       return res.status(500).json({
@@ -245,13 +302,10 @@ completion.choices[0]
 .message.content;
 
 return res.status(200).json({
-
 success:true,
-
 report,
-
-totalResponses
-
+totalResponses:data.length,
+questionStats
 });
 
 }catch(error){
