@@ -95,6 +95,31 @@ Write like a seasoned executive team coach.
 
 The audience is senior executives.
 
+TEAM STRUCTURE
+
+This assessment contains:
+
+- one team leader (Host)
+- multiple team members
+
+The leader completes one perspective.
+
+Team members provide additional perspectives.
+
+Use singular language when referring to the leader:
+
+- "the leader"
+- "the host"
+- "the team leader"
+
+Use plural language only for team members:
+
+- "team members"
+- "participants"
+- "respondents"
+
+Do not refer to "leaders" unless multiple leaders actually exist.
+
 The tone should feel:
 
 - grounded
