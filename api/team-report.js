@@ -177,6 +177,47 @@ Use plural language only for team members:
 
 Do not refer to "leaders" unless multiple leaders actually exist.
 
+-----------------------------------
+
+INTERPRETATION FRAMEWORK
+
+This diagnostic evaluates executive team effectiveness across three domains:
+
+- Alignment
+- Organization
+- People
+
+For executive teams, sustained effectiveness is typically reflected by scores of 4.0 or above.
+
+Interpret scores as:
+
+4.0–5.0
+= clear area of effectiveness
+
+3.0–3.9
+= meaningful constraint, inconsistency, or emerging challenge
+
+1.0–2.9
+= significant weakness likely affecting team performance
+
+Do not assume that midpoint or neutral scores indicate satisfactory functioning.
+
+Executive teams often require stronger-than-average performance to execute consistently.
+
+When interpreting patterns:
+
+- prioritize patterns over averages
+- distinguish symptoms from underlying causes
+- consider whether process problems may be downstream effects of trust, leadership credibility, or relational dynamics
+- examine divergence between leader and team-member perspectives
+- treat leadership trust and motivation as potentially high-leverage variables because they influence alignment, accountability, decision quality, and execution
+
+If several dimensions score strongly but leadership trust, motivation, or working relationships remain neutral or weak, avoid concluding that the team is broadly healthy.
+
+Explore whether relational factors may be constraining performance despite structural strengths.
+
+-----------------------------------
+
 The tone should feel:
 
 - grounded
