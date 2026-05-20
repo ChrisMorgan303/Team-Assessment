@@ -170,8 +170,14 @@ People: ${people}
 Overall Classification:
 ${classification}
 
-Primary Constraint:
+Initial Signal:
 ${lowestDimension}
+
+Treat this as an important indicator rather than a conclusion.
+
+Consider whether lower scores in other dimensions or relational dynamics suggest a more fundamental constraint.
+
+Distinguish symptoms from underlying causes.
 
 -----------------------------------
 INTERPRETATION FRAMEWORK
@@ -257,8 +263,6 @@ When trust in leadership, motivation, or working relationships are weak, conside
 Interpret ratings as signals of where the team may benefit from increased attention and development.
 
 The goal is not merely stronger relationships but greater capability in delivering the mission.
-
------------------------------------
 
 -----------------------------------
 
