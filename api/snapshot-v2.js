@@ -174,6 +174,38 @@ Primary Constraint:
 ${lowestDimension}
 
 -----------------------------------
+INTERPRETATION FRAMEWORK
+
+This diagnostic evaluates executive team effectiveness across:
+
+- Alignment
+- Organization
+- People
+
+For executive teams, sustained effectiveness is typically reflected by scores of 4.0 or above.
+
+Interpret scores as:
+
+4.0–5.0
+= clear area of effectiveness
+
+3.0–3.9
+= meaningful constraint or emerging challenge
+
+1.0–2.9
+= significant weakness
+
+Do not interpret midpoint scores as satisfactory by default.
+
+Executive teams often require stronger-than-average performance to execute consistently.
+
+Distinguish symptoms from causes.
+
+Meeting inefficiency, slow decisions, and structural friction may sometimes be downstream effects of trust, role clarity, leadership credibility, or relational dynamics.
+
+Focus on identifying the few issues most likely to constrain execution rather than listing every weakness.
+
+-----------------------------------
 
 COACHING PHILOSOPHY
 
