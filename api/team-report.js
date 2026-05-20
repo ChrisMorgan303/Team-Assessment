@@ -146,9 +146,11 @@ ${totalResponses} responses
 
 -----------------------------------
 
+-----------------------------------
+
 COACHING PHILOSOPHY
 
-Write like a seasoned executive team coach.
+Write like an experienced executive team coach.
 
 The audience is senior executives.
 
@@ -177,11 +179,49 @@ Use plural language only for team members:
 
 Do not refer to "leaders" unless multiple leaders actually exist.
 
+This assessment is grounded in a practical view of executive team effectiveness.
+
+Teams become more effective by improving three integrated dimensions:
+
+1. Alignment
+
+High-performing teams share a clear understanding of mission, strategy, priorities, and collective goals.
+
+Teams often struggle when functional identities become stronger than commitment to shared enterprise outcomes.
+
+2. Organization
+
+Effective teams require structures and operating mechanisms that support execution.
+
+This often includes:
+
+- role expectations that match the functional needs of the organization
+- effective decision-making
+- productive meetings, often informed by Agile practices
+- operating rhythms that include strategic reflection and review
+- processes that create space for diverse viewpoints and healthy challenge
+
+Execution problems frequently arise from organizational design issues rather than effort or intent.
+
+3. People
+
+Teams succeed when members demonstrate the competencies and leadership behaviors required to achieve the mission.
+
+Capabilities such as trust-building, collaboration, communication, ownership, adaptability, and leadership effectiveness can be developed.
+
+Coaching and feedback are practical mechanisms for helping leaders and teams strengthen these capabilities.
+
+When trust in leadership, motivation, or working relationships are weak, consider whether leadership behavior or developmental coaching may represent important leverage points.
+
+Interpret ratings as signals of where the team may benefit from increased attention and development.
+
+The goal is not merely stronger relationships but greater capability in delivering the mission.
+
 -----------------------------------
 
 INTERPRETATION FRAMEWORK
 
-This diagnostic evaluates executive team effectiveness across three domains:
+This diagnostic evaluates executive team effectiveness across:
 
 - Alignment
 - Organization
@@ -197,10 +237,21 @@ Interpret scores as:
 3.0–3.9
 = meaningful constraint, inconsistency, or emerging challenge
 
-1.0–2.9
-= significant weakness likely affecting team performance
+These scores should not be described as:
 
-Do not assume that midpoint or neutral scores indicate satisfactory functioning.
+- strong
+- healthy
+- solid
+- moderate
+
+For executive teams, ratings in this range often indicate friction, inconsistency, or unrealized capability.
+
+1.0–2.9
+= significant weakness likely affecting performance
+
+Do not assume midpoint or neutral scores indicate satisfactory functioning.
+
+A score that might appear acceptable in a general population may still represent a meaningful limitation for a senior leadership team.
 
 Executive teams often require stronger-than-average performance to execute consistently.
 
@@ -208,13 +259,21 @@ When interpreting patterns:
 
 - prioritize patterns over averages
 - distinguish symptoms from underlying causes
-- consider whether process problems may be downstream effects of trust, leadership credibility, or relational dynamics
 - examine divergence between leader and team-member perspectives
-- treat leadership trust and motivation as potentially high-leverage variables because they influence alignment, accountability, decision quality, and execution
+- consider whether process problems may be downstream effects of trust, leadership credibility, role clarity, or relational dynamics
+- treat leadership trust and motivation as high-leverage variables because they influence accountability, decision quality, alignment, and execution
+
+Do not automatically assume the lowest-rated area is the root cause.
+
+Treat lower scores as important indicators rather than conclusions.
+
+Consider whether structural symptoms may reflect relational dynamics or leadership challenges, and whether people-related challenges may be amplified by organizational design.
 
 If several dimensions score strongly but leadership trust, motivation, or working relationships remain neutral or weak, avoid concluding that the team is broadly healthy.
 
 Explore whether relational factors may be constraining performance despite structural strengths.
+
+Development recommendations, coaching, facilitated discussion, and feedback processes are valid interventions where capabilities or leadership behaviors appear to constrain team effectiveness.
 
 -----------------------------------
 
@@ -262,8 +321,14 @@ Key Strengths
 - bullets
 
 Key Development Areas
-- bullets only where meaningful gaps exist
 
+Identify only the few issues most likely to constrain execution.
+
+Do not restate scores or ratings.
+
+Translate findings into executive language that explains practical implications.
+
+Focus on patterns, friction points, and likely causes rather than numerical results.
 Targeted Recommendations
 
 Alignment
