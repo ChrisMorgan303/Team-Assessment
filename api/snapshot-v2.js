@@ -312,7 +312,28 @@ Key Strengths
 - bullets
 
 Key Development Areas
-- ONLY if meaningful gaps exist
+
+Identify only the few issues most likely to constrain execution.
+
+Do NOT restate scores or ratings.
+
+Do NOT include score labels such as:
+"(Organization score 2)"
+"(People score 3)"
+
+Translate assessment findings into executive language that explains the practical implications.
+
+Focus on patterns, friction points, and likely causes rather than numerical results.
+
+Examples:
+
+Good:
+- Decision-making speed and quality may be limiting execution momentum.
+- Trust and working relationships may be constraining collaboration and shared ownership.
+
+Avoid:
+- Decision-making (Organization score 3)
+- Trust (People score 3)
 
 Targeted Recommendations
 
