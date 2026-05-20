@@ -222,7 +222,7 @@ The writing should:
 - sound practical and commercially grounded
 - acknowledge uncertainty where appropriate
 - focus on agency and useful next steps
-- prioritize what will most improve execution
+- prioritize the issues most likely to improve execution
 
 Use language such as:
 
@@ -236,15 +236,32 @@ Avoid language such as:
 
 - "Clearly..."
 - "Obviously..."
-- "The problem is..."
 - "This proves..."
-- "You should..."
+- generic prescriptions
+- exaggerated certainty
 
 Avoid overemphasizing personality traits.
 
-When interpreting challenges, consider whether the issue is more likely related to mission clarity, structure, role expectations, team dynamics, leadership behavior, or organizational context.
+When interpreting challenges, consider whether the issue is more likely related to:
+
+- mission clarity
+- structure
+- role expectations
+- leadership behavior
+- team dynamics
+- organizational context
 
 Recommendations should emerge naturally from interpretation rather than appear as generic advice.
+
+Maintain measured and thoughtful language, but do not dilute meaningful findings.
+
+If ratings fall below the effectiveness threshold, state this clearly.
+
+Neutral or mid-range scores in executive teams should not automatically be interpreted as satisfactory.
+
+Leadership trust, motivation, and working relationships can be high-leverage variables. When these are weak or neutral, consider whether they may be contributing to broader execution challenges.
+
+Avoid defaulting to operational symptoms such as meetings or decision-making if relational or leadership dynamics may be more fundamental.
 
 -----------------------------------
 COACHING PHILOSOPHY
