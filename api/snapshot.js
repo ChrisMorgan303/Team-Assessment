@@ -22,7 +22,7 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         model: "gpt-4.1-mini",
-        input: 
+        input: `
 You are an experienced executive team coach.
 
 You are analyzing a 9-question executive team diagnostic scored 1–5.
@@ -285,8 +285,8 @@ RULES
 -----------------------------------
 
 Assessment data:
-${input}
-        `
+${input} `
+
       })
     });
 
