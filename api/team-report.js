@@ -1,3 +1,4 @@
+
 import { createClient } from "@supabase/supabase-js";
 import OpenAI from "openai";
 
@@ -52,64 +53,64 @@ export default async function handler(req,res){
         .from("team_responses")
         .select("*")
         .eq("team_code",teamCode);
-// ------------------------------------
-// QUESTION ANALYTICS
-// ------------------------------------
 
-const questionLabels = [
+    // ------------------------------------
+    // QUESTION ANALYTICS
+    // ------------------------------------
 
-"Strategy clarity",
-"Priority clarity",
-"Shared responsibility",
+    const questionLabels = [
 
-"Structure",
-"Decision-making",
-"Meeting productivity",
+      "Strategy clarity",
+      "Priority clarity",
+      "Shared responsibility",
 
-"Trust in leader",
-"Team capability",
-"Working relationships"
+      "Structure",
+      "Decision-making",
+      "Meeting productivity",
 
-];
+      "Trust in leader",
+      "Team capability",
+      "Working relationships"
 
-const questionStats =
-questionLabels.map((label,index)=>{
+    ];
 
-const scores =
-data
-.map(r=>r.answers?.[index])
-.filter(v=>v);
+    const questionStats =
+      questionLabels.map((label,index)=>{
 
-const average =
-scores.length
-? scores.reduce((a,b)=>a+b,0)/scores.length
-:0;
+        const scores =
+          data
+            .map(r=>r.answers?.[index])
+            .filter(v=>v);
 
-const distribution=[1,2,3,4,5]
-.map(score=>
-scores.filter(s=>s===score).length
-);
+        const average =
+          scores.length
+            ? scores.reduce((a,b)=>a+b,0)/scores.length
+            :0;
 
-return{
+        const distribution=[1,2,3,4,5]
+          .map(score=>
+            scores.filter(s=>s===score).length
+          );
 
-label,
+        return{
 
-average:
-Number(
-average.toFixed(1)
-),
+          label,
 
-distribution
+          average:
+            Number(
+              average.toFixed(1)
+            ),
 
-};
+          distribution
 
-})
+        };
 
-.sort(
-(a,b)=>
-b.average-a.average
-);
-    
+      })
+      .sort(
+        (a,b)=>
+          b.average-a.average
+      );
+
     if(error){
 
       return res.status(500).json({
@@ -128,13 +129,13 @@ b.average-a.average
     // OPENAI
     // ------------------------------------
 
-const prompt=`
+    const prompt=`
 
-You are an experienced executive team coach.
+You are an experienced team coach.
 
-You are analyzing a multi-rater executive team diagnostic.
+You are analyzing a multi-rater team diagnostic.
 
-The audience is senior executives.
+The audience is the team host and, where appropriate, team members.
 
 You are interpreting patterns across multiple perspectives.
 
@@ -146,40 +147,28 @@ ${totalResponses} responses
 
 -----------------------------------
 
------------------------------------
-
 COACHING PHILOSOPHY
 
-Write like an experienced executive team coach.
+Write like an experienced team coach.
 
-The audience is senior executives.
+The audience is the team host and, where appropriate, team members.
 
 TEAM STRUCTURE
 
 This assessment contains:
 
-- one team leader (Host)
+- one team host
 - multiple team members
 
-The leader completes one perspective.
+The host and team members each provide a perspective on the team's effectiveness.
 
-Team members provide additional perspectives.
+Treat all responses as equally valid individual perspectives.
 
-Use singular language when referring to the leader:
+Do not distinguish the host's ratings from those of other respondents when presenting findings.
 
-- "the leader"
-- "the host"
-- "the team leader"
+Do not identify, compare, or call attention to the host's individual ratings in relation to other team members' ratings.
 
-Use plural language only for team members:
-
-- "team members"
-- "participants"
-- "respondents"
-
-Do not refer to "leaders" unless multiple leaders actually exist.
-
-This assessment is grounded in a practical view of executive team effectiveness.
+This assessment is grounded in a practical view of team effectiveness.
 
 Teams become more effective by improving three integrated dimensions:
 
@@ -221,13 +210,13 @@ The goal is not merely stronger relationships but greater capability in deliveri
 
 INTERPRETATION FRAMEWORK
 
-This diagnostic evaluates executive team effectiveness across:
+This diagnostic evaluates team effectiveness across:
 
 - Alignment
 - Organization
 - People
 
-For executive teams, sustained effectiveness is typically reflected by scores of 4.0 or above.
+For teams, sustained effectiveness is typically reflected by scores of 4.0 or above.
 
 Interpret scores as:
 
@@ -244,22 +233,22 @@ These scores should not be described as:
 - solid
 - moderate
 
-For executive teams, ratings in this range often indicate friction, inconsistency, or unrealized capability.
+Ratings in this range often indicate friction, inconsistency, or unrealized capability.
 
 1.0–2.9
 = significant weakness likely affecting performance
 
 Do not assume midpoint or neutral scores indicate satisfactory functioning.
 
-A score that might appear acceptable in a general population may still represent a meaningful limitation for a senior leadership team.
+A score that might appear acceptable in a general population may still represent a meaningful limitation for a team.
 
-Executive teams often require stronger-than-average performance to execute consistently.
+Teams often require consistently strong performance to execute effectively.
 
 When interpreting patterns:
 
 - prioritize patterns over averages
 - distinguish symptoms from underlying causes
-- examine divergence between leader and team-member perspectives
+- examine variation and divergence across all responses without distinguishing the host's ratings from those of other respondents
 - consider whether process problems may be downstream effects of trust, leadership credibility, role clarity, or relational dynamics
 - treat leadership trust and motivation as high-leverage variables because they influence accountability, decision quality, alignment, and execution
 
@@ -329,6 +318,7 @@ Do not restate scores or ratings.
 Translate findings into executive language that explains practical implications.
 
 Focus on patterns, friction points, and likely causes rather than numerical results.
+
 Targeted Recommendations
 
 Alignment
@@ -367,11 +357,23 @@ Do not use:
 
 In Alignment and Divergence:
 
-identify:
+Identify:
 
-- areas with strong agreement
+- areas with strong agreement across respondents
 - areas where ratings vary substantially
 - likely implications of differing perceptions
+
+Describe differences as variations in the team's collective perspective.
+
+Never identify or compare the host's ratings separately from those of other respondents.
+
+Do not use phrases such as:
+
+- "the host rated this higher than team members"
+- "the leader sees this differently from the team"
+- "the host's perspective differs from the team's"
+
+Present differences as patterns across the team as a whole, without attributing them to specific individuals or roles.
 
 RAW TEAM DATA:
 
@@ -379,47 +381,47 @@ ${JSON.stringify(data,null,2)}
 
 `;
 
-const completion =
-await openai.chat.completions.create({
+    const completion =
+      await openai.chat.completions.create({
 
-model:"gpt-4.1",
+        model:"gpt-4.1",
 
-messages:[
+        messages:[
 
-{
-role:"system",
-content:
-"You are a highly skilled executive team coach."
-},
+          {
+            role:"system",
+            content:
+              "You are a highly skilled team coach."
+          },
 
-{
-role:"user",
-content:prompt
-}
+          {
+            role:"user",
+            content:prompt
+          }
 
-],
+        ],
 
-temperature:0.7
+        temperature:0.7
 
-});
+      });
 
-const report=
-completion.choices[0]
-.message.content;
+    const report=
+      completion.choices[0]
+        .message.content;
 
-return res.status(200).json({
-success:true,
-report,
-totalResponses:data.length,
-questionStats
-});
+    return res.status(200).json({
+      success:true,
+      report,
+      totalResponses:data.length,
+      questionStats
+    });
 
-}catch(error){
+  }catch(error){
 
-return res.status(500).json({
-error:error.message
-});
+    return res.status(500).json({
+      error:error.message
+    });
 
-}
+  }
 
 }
